@@ -106,7 +106,7 @@ Itemp getTop(Pilha P) {                         // Recebe como parâmetro a pilh
 
 void destroy(Pilha *P) {
 
-    free(((*P)->item);
+    free((*P)->item);
     free(*P);
     *P = NULL;
 
