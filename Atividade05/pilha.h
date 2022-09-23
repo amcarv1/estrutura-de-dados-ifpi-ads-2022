@@ -1,4 +1,5 @@
-#include "pilha.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /* Função que cria a pilha. */
 
