@@ -40,4 +40,5 @@ int main() {
     printf("Resultado: %s",desempilha(p));
 
     return 0;
+    
 }
