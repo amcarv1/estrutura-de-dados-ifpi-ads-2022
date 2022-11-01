@@ -81,19 +81,6 @@ char getTopo(Pilha *P){
     }
 }
 
-int prio(char o){
-    switch(o){
-        case '|':
-            return 1;
-        case '&':
-            return 2;
-
-        case '~':
-            return 3;
-    }
-}
-
-
 char *posfixa(char *e) {
     static char s[256];
     int j = 0;
@@ -101,24 +88,17 @@ char *posfixa(char *e) {
 
     for(int i = 0; e[i]; i++) {
 
-        if(e[i] == '(') {
-            push('(',P);
-        } else if (isdigit(e[i])){
-             s[j++] = e[i];
-        } else if(strchr("+*-/", e[i])) {
-            while (!pilhaVazia(P) && prio(getTopo(P)) >= prio(e[i])){
-                 s[j++] = pop(P);
-            }
-            push(e[i], P);
-        }else if(e[i] == ')') {
-            while (getTopo(P) != '('){
-                s[j++] = pop(P);
-            }
-            pop(P);
+        if(isdigit(e[i]) || e[i] == '.') {
+            s[j++] = e[i];
         }
-    }
-    while (!pilhaVazia(P)){
-        s[j++] = pop(P);
+
+        if(strchr("+*-/", e[i])) {
+            push(e[i], P);
+        }
+
+        if(e[i] == ')') {
+            s[j++] = pop(P);
+        }
     }
 
     s[j] = '\0';
